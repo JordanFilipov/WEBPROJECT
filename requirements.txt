@@ -16,6 +16,7 @@ idna==2.9
 kiwisolver==1.2.0
 matplotlib==3.2.1
 numpy==1.18.2
+psycopg2==2.8.5
 pygal==2.4.0
 pygal-maps-world==1.0.2
 pygame==1.9.6
