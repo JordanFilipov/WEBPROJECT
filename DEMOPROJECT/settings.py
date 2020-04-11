@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tg287s#fhml**%5loq1-kx+3&vix9ltgi2@^a3nk@0^3z660av'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['project-name.herokuapp.com', '.yourdomain.com']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -88,7 +88,6 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -134,14 +133,17 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
-CORS_REPLACE_HTTPS_REFERER = True
-HOST_SCHEME = "https://"
-SECURE_PROXY_SSL_HEADER= ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS= True
-SECURE_HSTS_SECONDS= 1000000
-SECURE_FRAME_DENY = True
+import dj_database_url
+ DATABASES = {
+ 'default': dj_database_url.config(default='postgres://localhost')
+ }
 
+ # Honor the 'X-Forwarded-Proto' header for request.is_secure().
+ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+ # Static asset configuration
+ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ STATIC_ROOT = 'staticfiles'
+ STATICFILES_DIRS = (
+ os.path.join(BASE_DIR, 'static'),
+ )

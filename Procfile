@@ -1,1 +1,1 @@
-"web: gunicorn DEMOPROJECT.wsgi" 
+web: gunicorn DEMOPROJECT.wsgi --log-file -
